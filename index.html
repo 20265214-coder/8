@@ -1,0 +1,731 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erica's Creatives | Activity 8</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7c9df;
+            color: #222;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        header {
+            background-color: #ffffff;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .brand img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+
+        .brand h2 {
+            font-size: 22px;
+            color: #d63384;
+        }
+
+
+        nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px 0;
+            border-bottom: 3px solid transparent;
+        }
+
+
+        nav a:hover,
+        nav a.active {
+            color: #d63384;
+            border-bottom-color: #d63384;
+        }
+
+
+        main {
+            flex: 1;
+            padding: 45px 7%;
+        }
+
+
+        .page {
+            display: none;
+        }
+
+
+        .page.active {
+            display: block;
+        }
+
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+
+        .page-title p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+
+        .contact-card {
+            background-color: white;
+            max-width: 1050px;
+            min-height: 470px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+
+        .contact-info {
+            background-color: #222;
+            color: white;
+            padding: 45px 35px;
+        }
+
+
+        .contact-info h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+
+        .contact-info p {
+            color: #eeeeee;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+
+        .info-item {
+            margin-bottom: 25px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+
+        .info-item strong {
+            display: block;
+            color: #ffadd2;
+            margin-bottom: 5px;
+        }
+
+
+        .contact-form {
+            padding: 45px 40px;
+        }
+
+
+        .contact-form h2 {
+            font-size: 27px;
+            margin-bottom: 25px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+        }
+
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+        }
+
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid #d63384;
+            border-color: #d63384;
+        }
+
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+
+        .send-button {
+            background-color: #222;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+
+        .send-button:hover {
+            background-color: #d63384;
+        }
+
+
+        .message-status {
+            margin-top: 15px;
+            line-height: 1.6;
+            color: #b42367;
+        }
+
+
+        .home-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .home-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+
+        .home-card h2 {
+            color: #d63384;
+            margin-bottom: 15px;
+        }
+
+
+        .home-card p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+
+        .pink-button {
+            display: inline-block;
+            padding: 13px 22px;
+            background: #d63384;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+
+        .about-card {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            line-height: 1.9;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .about-card h2 {
+            color: #d63384;
+            margin-bottom: 15px;
+        }
+
+
+        .about-card p {
+            margin-bottom: 15px;
+        }
+
+
+        .gallery-grid {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+
+        .gallery-item {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .gallery-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+
+        .gallery-item h3 {
+            margin-bottom: 8px;
+            color: #d63384;
+        }
+
+
+        .gallery-item p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            font-size: 14px;
+        }
+
+
+        @media (max-width: 750px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+
+            .brand {
+                justify-content: center;
+            }
+
+
+            nav {
+                justify-content: center;
+                gap: 18px;
+            }
+
+
+            main {
+                padding: 30px 5%;
+            }
+
+
+            .contact-card {
+                grid-template-columns: 1fr;
+            }
+
+
+            .contact-info,
+            .contact-form {
+                padding: 30px 25px;
+            }
+
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 15px;
+            }
+
+
+            .page-title h1 {
+                font-size: 30px;
+            }
+
+
+            .home-card,
+            .about-card {
+                padding: 25px;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <header>
+        <div class="brand">
+            <img src="Logo.jpg" alt="Erica's Creatives logo">
+            <h2>Erica's Creatives</h2>
+        </div>
+
+
+        <nav aria-label="Main navigation">
+            <a href="#home" data-page="home">Home</a>
+            <a href="#about" data-page="about">About</a>
+            <a href="#gallery" data-page="gallery">Gallery</a>
+            <a href="#contact" data-page="contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+
+        <!-- HOME PAGE -->
+        <section id="home" class="page">
+            <div class="page-title">
+                <h1>Welcome to Erica's Creatives</h1>
+                <p>A little space for creativity, ideas, and inspiration.</p>
+            </div>
+
+
+            <div class="home-card">
+                <img src="Logo.jpg" alt="Erica's Creatives logo">
+
+
+                <h2>Creativity Starts Here</h2>
+
+
+                <p>
+                    Welcome to my creative space! This website showcases my
+                    interests, creative work, and the things that inspire me.
+                    Explore the different pages to learn more about me and
+                    see my gallery.
+                </p>
+
+
+                <a href="#gallery" class="pink-button">Explore My Gallery</a>
+            </div>
+        </section>
+
+
+        <!-- ABOUT PAGE -->
+        <section id="about" class="page">
+            <div class="page-title">
+                <h1>About Me</h1>
+                <p>Get to know the person behind Erica's Creatives.</p>
+            </div>
+
+
+            <div class="about-card">
+                <h2>Hello, I'm Erica!</h2>
+
+
+                <p>
+                    Welcome to Erica's Creatives. This website is a place
+                    where I can share my creativity, interests, and ideas.
+                </p>
+
+
+                <p>
+                    I believe that creativity allows us to express ourselves
+                    and turn simple ideas into something meaningful. I enjoy
+                    learning new things and exploring different ways to
+                    express my imagination.
+                </p>
+
+
+                <p>
+                    Thank you for visiting my website. I hope you enjoy
+                    exploring my work and learning more about me!
+                </p>
+            </div>
+        </section>
+
+
+        <!-- GALLERY PAGE -->
+        <section id="gallery" class="page">
+            <div class="page-title">
+                <h1>My Gallery</h1>
+                <p>A collection of photos and creative inspiration.</p>
+            </div>
+
+
+            <div class="gallery-grid">
+
+
+                <div class="gallery-item">
+                    <img src="Logo.jpg" alt="Erica's Creatives logo">
+                    <h3>My Brand</h3>
+                    <p>The logo of my creative website.</p>
+                </div>
+
+
+                <div class="gallery-item">
+                    <img src="Picture 1.jpg" alt="Gallery photo one">
+                    <h3>Photo One</h3>
+                    <p>A special moment captured in a photo.</p>
+                </div>
+
+
+                <div class="gallery-item">
+                    <img src="Picture 2.jpg" alt="Gallery photo two">
+                    <h3>Photo Two</h3>
+                    <p>A memory worth keeping.</p>
+                </div>
+
+
+                <div class="gallery-item">
+                    <img src="Picture 3.jpg" alt="Gallery photo three">
+                    <h3>Photo Three</h3>
+                    <p>A little inspiration from my collection.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <!-- CONTACT PAGE - ACTIVITY 8 -->
+        <section id="contact" class="page">
+            <div class="page-title">
+                <h1>Contact Us</h1>
+                <p>Have a question or something to share? Send me a message!</p>
+            </div>
+
+
+            <div class="contact-card">
+
+
+                <div class="contact-info">
+                    <h2>Contact Details</h2>
+
+
+                    <p>
+                        I'd love to hear from you! Feel free to reach out
+                        using the contact information below.
+                    </p>
+
+
+                    <div class="info-item">
+                        <strong>Address</strong>
+                        Baguio City, Philippines
+                    </div>
+
+
+                    <div class="info-item">
+                        <strong>Email</strong>
+                        You can enter your email address here.
+                    </div>
+
+
+                    <div class="info-item">
+                        <strong>Phone</strong>
+                        Add your contact number here.
+                    </div>
+                </div>
+
+
+                <div class="contact-form">
+                    <h2>Send a Message</h2>
+
+
+                    <form id="contactForm">
+
+
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email address"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Write your message here..."
+                                required
+                            ></textarea>
+                        </div>
+
+
+                        <button type="submit" class="send-button">
+                            SEND MESSAGE
+                        </button>
+
+
+                        <p
+                            id="messageStatus"
+                            class="message-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+
+
+                    </form>
+                </div>
+
+
+            </div>
+        </section>
+
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 Erica's Creatives. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+        const navigationLinks = document.querySelectorAll("nav a");
+        const pages = document.querySelectorAll(".page");
+
+
+        function showPage(pageName) {
+            const selectedPage = document.getElementById(pageName);
+
+
+            if (!selectedPage) {
+                pageName = "contact";
+            }
+
+
+            pages.forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+
+            document.getElementById(pageName).classList.add("active");
+
+
+            navigationLinks.forEach(function(link) {
+                link.classList.remove("active");
+
+
+                if (link.dataset.page === pageName) {
+                    link.classList.add("active");
+                }
+            });
+        }
+
+
+        function navigateToPage() {
+            const pageName = window.location.hash.substring(1);
+            showPage(pageName || "contact");
+        }
+
+
+        navigationLinks.forEach(function(link) {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+
+
+                const pageName = link.dataset.page;
+
+
+                if (window.location.hash === "#" + pageName) {
+                    showPage(pageName);
+                } else {
+                    window.location.hash = pageName;
+                }
+            });
+        });
+
+
+        window.addEventListener("hashchange", navigateToPage);
+
+
+        navigateToPage();
+
+
+        document.getElementById("contactForm").addEventListener(
+            "submit",
+            function(event) {
+                event.preventDefault();
+
+
+                document.getElementById("messageStatus").textContent =
+                    "Your form is complete! To actually send messages, connect this form to an email service.";
+
+
+                this.reset();
+            }
+        );
+    </script>
+
+
+</body>
+</html>
